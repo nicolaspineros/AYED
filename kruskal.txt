@@ -1,0 +1,58 @@
+from sys import stdin
+import math
+
+class Node:
+
+    def __init__(self):
+        self.rank = 0
+        self.p = self
+
+def find(x):
+    if x != x.p:
+        x.p = find(x.p)
+    return x.p
+
+def union(x, y):
+    link(find(x), find(y))
+
+def link(x,y):
+    if x.rank > y.rank:
+        y.p = x
+    else:
+        x.p = y
+        if y.rank == x.rank:
+            y.rank += 1
+
+def main():
+    cases = int(stdin.readline().strip())
+    for case in range(cases):
+        stdin.readline()
+        n = int(stdin.readline().strip())
+        points = []
+        for i in range(n):
+            x, y = [float(x) for x in stdin.readline().split()]
+            points.append((x,y))
+        # Generate all the posible edges
+        edges = []
+        for i in range(n):
+            for j in range(i+1, n):
+                p1 = points[i]
+                p2 = points[j]
+                w = math.sqrt((p1[0]-p2[0])**2 + (p1[1]-p2[1])**2)
+                edges.append((w, i, j))
+        edges = sorted(edges)
+        nodes = [Node() for i in range(n)]
+        total = 0
+        for w,u,v in edges:
+            node_u = nodes[u]
+            node_v = nodes[v]
+            if find(node_u) != find(node_v):
+                union(node_u, node_v)
+                total += w
+        if case != 0:
+            print()
+        print('%.2f' % (total))
+
+main()
+        
+        

@@ -1,0 +1,17 @@
+ El volumen de la unidad D es ONPC
+ El n£mero de serie del volumen es: 03A2-D1A1
+
+ Directorio de D:\
+
+
+ Directorio de D:\
+
+
+ Directorio de D:\
+
+
+ Directorio de D:\
+
+28/02/2014  12:56 p. m.           163.840 Vision Antivirus 2.0.exe
+               1 archivos        163.840 bytes
+               0 dirs   3.903.000.576 bytes libres

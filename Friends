@@ -1,0 +1,39 @@
+from sys import stdin
+class ds:
+
+    def __init__(self):
+        self.rank = 0
+        self. p = self
+
+    def find(self):
+        if self != self.p:
+            self.p = self.p.find()
+        return self.p
+
+    def link(self, x, y):
+        if x.rank > y.rank:
+            y.p = x
+        else:
+            x.p = y
+            if y.rank == x.rank:
+                y.rank += 1
+
+    def union(self, y):
+        self.link(self.find(), y.find())
+def main():
+    ZZ = int(stdin.readline().strip())
+    for NN in range(ZZ):
+        a,b = [int(i)for i in stdin.readline().strip().split()]
+        A = [ds() for i in range(a+1)]
+        for i in range(b):
+            q,w = [int(i)for i in stdin.readline().strip().split()]
+            A[q].union(A[w])
+        L = []
+        for i in A[1:]:
+            C = 0
+            for j in A[1:]:
+                if i.find() == j.find():
+                    C += 1
+            L.append(C)
+        print(max(L))
+main()
